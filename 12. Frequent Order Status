@@ -1,0 +1,8 @@
+(Identify the top 3 most frequent order statuses for each store based on the number of orders with each status. The statuses represent the different stages of orders, such as "Pending," "Processing," "Shipped," etc. The goal is to find which statuses occur most frequently in each store.)
+Write a query that returns the store name, order status, and the count of orders for each status. The results should be sorted by the store name and the frequency of each status, with the top 3 most frequent statuses for each store.
+
+SELECT s.store_name, o.order_status, COUNT(o.order_id) AS status_count FROM stores s
+JOIN orders o ON s.store_id = o.store_id
+GROUP BY s.store_name, o.order_status
+ORDER BY s.store_name ASC, status_count DESC
+LIMIT 3;
