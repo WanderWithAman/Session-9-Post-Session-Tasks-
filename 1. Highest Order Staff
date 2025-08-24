@@ -1,0 +1,9 @@
+Write an SQL query that:
+1. Identify the staff member who processed the most orders.
+2. Display the staff member's full name and the total number of orders they processed.
+
+SELECT CONCAT(s.first_name,' ', s.last_name) AS staff_name, COUNT(DISTINCT o.order_id) AS total_orders FROM staffs s
+JOIN orders o ON s.staff_id = o.staff_id
+GROUP BY staff_name
+ORDER BY total_orders DESC
+LIMIT 1;
