@@ -1,0 +1,12 @@
+Write an SQL query to:
+1. Retrieve the store name, product name, and the total quantity sold for each product in that store.
+2. Order the results by total quantity sold in descending order.
+3. Ensure that aggregation is done correctly by joining relevant tables.
+
+SELECT s.store_name, p.product_name, SUM(oi.quantity) AS total_quantity_sold
+FROM stores s 
+JOIN orders o ON s.store_id = o.store_id
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id
+GROUP BY s.store_name, p.product_name
+ORDER BY total_quantity_sold DESC;
