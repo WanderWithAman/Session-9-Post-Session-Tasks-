@@ -1,0 +1,11 @@
+Write an SQL query that Identify the stores that have sold the most products belonging to a specific category, and list the names and quantities sold by each.
+For a given product category (e.g., Road Bikes)
+
+SELECT s.store_name, SUM(oi.quantity) AS total_quantity_sold FROM stores s
+JOIN orders o ON s.store_id = o.store_id
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id
+JOIN categories c ON p.category_id = c.category_id
+WHERE category_name = 'Road Bikes'
+GROUP BY s.store_name
+ORDER BY total_quantity_sold DESC;
