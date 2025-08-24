@@ -1,0 +1,8 @@
+Write an SQL query that:
+1. Retrieve the names and email addresses of customers who have placed at least one order.
+2. Ensure that all orders from these customers are either Rejected or Completed (status not in Pending (1) or Processing (2)).
+
+SELECT c.first_name, c.last_name, c.email FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_status > 1 AND 2
+GROUP BY c.first_name, c.last_name, c.email;
