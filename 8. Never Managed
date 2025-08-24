@@ -1,0 +1,10 @@
+Write an SQL query to Identify staff members who are not assigned as managers to any other staff.
+• Uses a self-join on the staffs table, where one instance of the table (s2) represents subordinates and the other (s) represents potential managers.
+• Filters the results to find staff members whose staff_id does not appear as a manager_id for any subordinate.
+• Retrieves the full name of such staff members.
+
+
+SELECT CONCAT(s.first_name,' ', s.last_name) AS staff_name
+FROM staffs s
+LEFT JOIN staffs s2 ON s.staff_id = s2.manager_id
+WHERE s2.staff_id IS NULL;
