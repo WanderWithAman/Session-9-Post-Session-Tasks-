@@ -1,0 +1,10 @@
+Write an SQL query to:
+1. Calculate the total discount amount for each product by using the formula: total_discount = quantity * list_price * discount / 100
+2. Retrieve the product names and their corresponding total discount amounts.
+3. Sort the results by the total discount amount in descending order to show the most discounted products first.
+
+SELECT p.product_name, SUM(oi.quantity * oi.list_price * oi.discount / 100) AS total_discount
+FROM products p
+JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_name
+ORDER BY total_discount DESC;
