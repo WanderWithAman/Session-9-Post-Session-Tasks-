@@ -1,0 +1,11 @@
+Write an SQL query to identify the top 5 customers who spent the most on orders.
+(Total spending calculation: For each order item, the total cost is calculated as quantity * list_price * (1 - discount / 100).)
+Calculate the total amount spent by each customer across all their orders and retrieves the top 5 customers based on their total spending.
+
+
+SELECT c.first_name, c.last_name, c.email, SUM(oi.quantity * oi.list_price * (1-oi.discount /100)) AS total_spent FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY c.first_name, c.last_name, c.email
+ORDER BY total_spent DESC
+LIMIT 5;
