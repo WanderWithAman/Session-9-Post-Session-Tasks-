@@ -1,0 +1,8 @@
+Write an SQL query that:
+1. Selects the product_name and list_price from the products table.
+2. Filters the results to include only the product(s) whose list_price matches the maximum list price in the table.
+
+SELECT product_name, list_price FROM products
+WHERE list_price = (
+  SELECT MAX(list_price) FROM order_items
+);
