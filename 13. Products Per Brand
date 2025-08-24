@@ -1,0 +1,8 @@
+(Calculate the total number of products sold for each brand. By joining the brands, products, order_items, and orders tables, it computes the sum of quantities sold per brand, providing insight into which brands are performing the best in terms of sales.)
+Write a query that retrieves the brand name and the total quantity of products sold for each brand. The results should be ordered by the total quantity sold in descending order.
+
+SELECT b.brand_name, SUM(oi.quantity) AS total_quantity_sold FROM brands b
+JOIN products p ON b.brand_id = p.brand_id
+JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY b.brand_name
+ORDER BY total_quantity_sold DESC;
